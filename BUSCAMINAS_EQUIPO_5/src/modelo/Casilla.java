@@ -36,5 +36,8 @@ public class Casilla {
 		this.visible = visible;
 	}
 
+	public void recuperarPosicion(int y, int x) {
+		
+	}
 	
 }
