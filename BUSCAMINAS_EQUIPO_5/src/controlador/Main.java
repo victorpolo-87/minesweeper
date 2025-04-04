@@ -15,5 +15,9 @@ public class Main {
 		v1.setVisible(true);
 		
 	}
-
+	
+	public static void cerrarRanking() {
+		
+	}
+	
 }
