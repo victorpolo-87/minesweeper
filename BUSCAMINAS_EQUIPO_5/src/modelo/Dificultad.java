@@ -12,4 +12,32 @@ public class Dificultad {
 		this.tamanioColumnas = tamanioColumnas;
 	}
 
+	
+	public DificultadEnum getDificultadEnum() {
+		return dificultadEnum;
+	}
+
+
+	public void setDificultadEnum(DificultadEnum dificultadEnum) {
+		this.dificultadEnum = dificultadEnum;
+	}
+
+	public int getTamanioFilas() {
+		return tamanioFilas;
+	}
+
+	
+	public void setTamanioFilas(int tamanioFilas) {
+		this.tamanioFilas = tamanioFilas;
+	}
+
+	public int getTamanioColumnas() {
+		return tamanioColumnas;
+	}
+
+	
+	public void setTamanioColumnas(int tamanioColumnas) {
+		this.tamanioColumnas = tamanioColumnas;
+	}
+
 }
