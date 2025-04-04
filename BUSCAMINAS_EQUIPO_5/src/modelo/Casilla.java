@@ -1,39 +1,15 @@
 package modelo;
 
-public class Casilla {
+public abstract class Casilla {
+	protected int x;
+	protected int y;
+	public boolean revelada;
+	public boolean marcada;
 
-	private int y;
-	private int x;
-	private boolean visible;
-
-	public Casilla(int y, int x, boolean visible) {
-		this.y = y;
+	public Casilla(int x, int y) {
 		this.x = x;
-		this.visible = visible;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
 		this.y = y;
+		this.revelada = false;
+		this.marcada = false;
 	}
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public boolean isVisible() {
-		return visible;
-	}
-
-	public void setVisible(boolean visible) {
-		this.visible = visible;
-	}
-	
 }
