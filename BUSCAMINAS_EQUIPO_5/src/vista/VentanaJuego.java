@@ -42,7 +42,7 @@ public class VentanaJuego extends JFrame {
 
 		// Genera la cuadrícula en base a posiciones
 		int filas = 15;
-		int columnas = 10;
+		int columnas = 15;
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(0, 0, 0, 0);
 		gbc.fill = GridBagConstraints.BOTH;
