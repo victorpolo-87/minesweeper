@@ -105,4 +105,42 @@ public class Tablero {
         }
         return null;
     }
+
+	public Casilla[][] getCasillas() {
+		return casillas;
+	}
+
+	public void setCasillas(Casilla[][] casillas) {
+		this.casillas = casillas;
+	}
+
+	public int getFilas() {
+		return filas;
+	}
+
+	
+	public void setFilas(int filas) {
+		this.filas = filas;
+	}
+
+
+	public int getColumnas() {
+		return columnas;
+	}
+
+	 
+	public void setColumnas(int columnas) {
+		this.columnas = columnas;
+	}
+
+	
+	public int getNumeroBombas() {
+		return numeroBombas;
+	}
+
+	public void setNumeroBombas(int numeroBombas) {
+		this.numeroBombas = numeroBombas;
+	}
+    
+    
 }
