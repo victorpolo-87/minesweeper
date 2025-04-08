@@ -14,10 +14,6 @@ public class Dificultad {
         this.cantidadMinas = dificultadEnum.getMinas();
     }
 
-    public DificultadEnum getDificultadEnum() {
-        return dificultadEnum;
-    }
-
     public void setDificultadEnum(DificultadEnum dificultadEnum) {
         this.dificultadEnum = dificultadEnum;
         this.tamanioFilas = dificultadEnum.getFilas();
@@ -25,6 +21,10 @@ public class Dificultad {
         this.cantidadMinas = dificultadEnum.getMinas();
     }
 
+    public DificultadEnum getDificultadEnum() {
+        return dificultadEnum;
+    }
+    
     public int getTamanioFilas() {
         return tamanioFilas;
     }

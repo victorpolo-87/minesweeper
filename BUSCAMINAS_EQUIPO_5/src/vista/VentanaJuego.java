@@ -14,8 +14,9 @@ public class VentanaJuego extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
-	public VentanaJuego() {
+	private int x;
+	private int y;
+	public VentanaJuego(int x, int y) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 690, 477);
 		contentPane = new JPanel();
@@ -39,10 +40,9 @@ public class VentanaJuego extends JFrame {
 		// Configurar el GridBagLayout del panel para la cuadrícula de botones
 		GridBagLayout gbl_panel = new GridBagLayout();
 		panel.setLayout(gbl_panel);
-
 		// Genera la cuadrícula en base a posiciones
-		int filas = 15;
-		int columnas = 15;
+		int filas = x;
+		int columnas = y;
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.insets = new Insets(0, 0, 0, 0);
 		gbc.fill = GridBagConstraints.BOTH;
@@ -51,8 +51,8 @@ public class VentanaJuego extends JFrame {
 
 		for (int fila = 0; fila < filas; fila++) {
 			for (int columna = 0; columna < columnas; columna++) {
-				gbc.gridx = columna; // Posición X (columna)
-				gbc.gridy = fila; // Posición Y (fila)
+				gbc.gridx = columna;
+				gbc.gridy = fila;
 				JButton boton = new JButton(fila + "," + columna);
 				panel.add(boton, gbc);
 			}
