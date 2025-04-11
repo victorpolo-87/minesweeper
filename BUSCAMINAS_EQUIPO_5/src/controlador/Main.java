@@ -1,33 +1,28 @@
 package controlador;
 
 import modelo.Dificultad;
+import modelo.Juego;
 import vista.VentanaJuego;
 import vista.VentanaMenuPrincipal;
 
 public class Main {
-    private static int x; // Columnas
-    private static int y; // Filas
-    private static VentanaMenuPrincipal vm;
+	private static Juego juego;
+	private static VentanaMenuPrincipal ventanaMenu;
+	private static VentanaJuego ventanaJuego;
 
-    public static void main(String[] args) {
-        vm = new VentanaMenuPrincipal();
-        vm.setVisible(true);
-    }
+	public static void main(String[] args) {
+		juego = new Juego();
+		ventanaMenu = new VentanaMenuPrincipal();
+		ventanaMenu.setVisible(true);
+	}
 
-    public static void getFilasColumnas(Dificultad dificultad) {
-        if (dificultad != null) {
-            x = dificultad.getTamanioColumnas();
-            y = dificultad.getTamanioFilas();
-        } else {
-            throw new IllegalArgumentException("La dificultad no puede ser nula");
-        }
-    }
+	public static void getFilasColumnas(Dificultad dificultad) {
+		juego.iniciarJuego(dificultad); // Inicializa el tablero
+	}
 
-    public static void cambiarVentanaAJuego() {
-        VentanaJuego v1 = new VentanaJuego(x, y);
-        vm.setVisible(false); 
-        v1.setVisible(true);
-        v1.pack();
-    }
-
+	public static void cambiarVentanaAJuego() {
+		ventanaMenu.dispose();
+		ventanaJuego = new VentanaJuego(juego.getTablero().getFilas(), juego.getTablero().getColumnas(), juego);
+		ventanaJuego.setVisible(true);
+	}
 }

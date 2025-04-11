@@ -111,33 +111,35 @@ public class VentanaMenuPrincipal extends JFrame {
 		gbc_choiceDificultad.gridy = 8;
 		contentPane.add(choiceDificultad, gbc_choiceDificultad);
 		// Opciones del Choice
-        choiceDificultad.add("");
-        choiceDificultad.add("Facil");
-        choiceDificultad.add("Normal");
-        choiceDificultad.add("Dificil");
+		choiceDificultad.add("");
+		choiceDificultad.add("Facil");
+		choiceDificultad.add("Normal");
+		choiceDificultad.add("Dificil");
 
-        JButton btnJugar = new JButton("Jugar");
-        btnJugar.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                String seleccion = choiceDificultad.getSelectedItem();
-                if (!seleccion.equals("")) {
-                    try {
-                        String seleccionNormalizada = seleccion.toUpperCase();
-                        DificultadEnum nivel = DificultadEnum.valueOf(seleccionNormalizada);
-                        Dificultad d1 = new Dificultad(nivel);
-                        Main.getFilasColumnas(d1); 
-                        Main.cambiarVentanaAJuego(); 
-                    } catch (IllegalArgumentException ex) {
-                        JOptionPane.showMessageDialog(VentanaMenuPrincipal.this,
-                                "Selecciona una dificultad válida", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(VentanaMenuPrincipal.this,
-                            "Por favor, selecciona una dificultad", "Advertencia", JOptionPane.WARNING_MESSAGE);
-                }
-            }
-        });
+		JButton btnJugar = new JButton("Jugar");
+		btnJugar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String seleccion = choiceDificultad.getSelectedItem();
+				if (!seleccion.equals("")) {
+					try {
+						String seleccionNormalizada = seleccion.toUpperCase();
+						DificultadEnum nivel = DificultadEnum.valueOf(seleccionNormalizada);
+						Dificultad d1 = new Dificultad(nivel);
+						Main.getFilasColumnas(d1);
+						Main.cambiarVentanaAJuego();
+					} catch (IllegalArgumentException ex) {
+						JOptionPane.showMessageDialog(VentanaMenuPrincipal.this, "Selecciona una dificultad válida",
+								"Error", JOptionPane.ERROR_MESSAGE);
+					}
+				} else {
+					JOptionPane.showMessageDialog(VentanaMenuPrincipal.this, "Por favor, selecciona una dificultad",
+							"Advertencia", JOptionPane.WARNING_MESSAGE);
+				}
+			}
+
+		});
+		setLocationRelativeTo(null);
 		GridBagConstraints gbc_btnJugar = new GridBagConstraints();
 		gbc_btnJugar.insets = new Insets(0, 0, 5, 5);
 		gbc_btnJugar.gridx = 3;
