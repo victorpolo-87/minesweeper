@@ -2,6 +2,8 @@ package modelo;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.SwingUtilities; // esta parte soluciona un error del timer en memoria
+import vista.VentanaJuego;
 
 public class Juego {
 	private Tablero tablero;
@@ -9,11 +11,18 @@ public class Juego {
 	private Dificultad dificultad;
 	private int tiempo;
 	private Timer timer;
+	private VentanaJuego ventana;
+	private int bombaExplotadaX = -1;
+    private int bombaExplotadaY = -1; 
 
 	public Juego() {
 		this.estadoJuego = EstadoEnum.NO_INICIADO;
 		this.tiempo = 0;
 		this.timer = new Timer();
+	}
+
+	public void setVentana(VentanaJuego ventana) {
+		this.ventana = ventana;
 	}
 
 	public void iniciarJuego(Dificultad dificultad) {
@@ -24,11 +33,14 @@ public class Juego {
 		tablero.colocarBombas();
 		tablero.calcularNumeros();
 		estadoJuego = EstadoEnum.EN_CURSO;
+		bombaExplotadaX = -1;
+        bombaExplotadaY = -1;
 		iniciarTemporizador();
 	}
 
-	private void iniciarTemporizador() {
+	private void iniciarTemporizador() {  // Si no se entiende esta parte escribanme y se los explico 
 		tiempo = 0;
+		timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
@@ -52,6 +64,8 @@ public class Juego {
 			boolean resultado = tablero.revelarCasilla(x, y);
 			if (!resultado) {
 				estadoJuego = EstadoEnum.PERDIDO;
+				bombaExplotadaX = x;
+                bombaExplotadaY = y; 
 				detenerTemporizador();
 				actualizarVentanaJuego();
 			} else {
@@ -88,8 +102,33 @@ public class Juego {
 		return casillasReveladas == casillasSinBomba;
 	}
 
-	private void actualizarVentanaJuego() {
-		System.out.println("Tiempo: " + tiempo + " segundos | Estado: " + estadoJuego);
+	private void actualizarVentanaJuego() { // permite actualizar la ventana evitando el error del timer :)
+	    if (ventana != null) {
+	        SwingUtilities.invokeLater(new Runnable() { // Si no se entiende esta parte escribanme y se los explico 
+	            @Override
+	            public void run() {
+	                ventana.actualizarInterfaz();
+	            }
+	        });
+	    }
+	}
+
+	public void reiniciarJuego() {
+		detenerTemporizador();
+		iniciarJuego(dificultad);
+		actualizarVentanaJuego();
+	}
+
+	public int getNumBombasRestantes() {
+		int marcadas = 0;
+		for (int i = 0; i < tablero.getFilas(); i++) {
+			for (int j = 0; j < tablero.getColumnas(); j++) {
+				if (tablero.getCasilla(i, j).marcada) {
+					marcadas++;
+				}
+			}
+		}
+		return dificultad.getCantidadMinas() - marcadas;
 	}
 
 	public int getTiempo() {
@@ -103,4 +142,22 @@ public class Juego {
 	public EstadoEnum getEstadoJuego() {
 		return estadoJuego;
 	}
+
+	public int getBombaExplotadaX() {
+		return bombaExplotadaX;
+	}
+
+	public void setBombaExplotadaX(int bombaExplotadaX) {
+		this.bombaExplotadaX = bombaExplotadaX;
+	}
+
+	public int getBombaExplotadaY() {
+		return bombaExplotadaY;
+	}
+
+	public void setBombaExplotadaY(int bombaExplotadaY) {
+		this.bombaExplotadaY = bombaExplotadaY;
+	}
+	
+	
 }
