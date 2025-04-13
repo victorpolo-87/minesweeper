@@ -268,7 +268,7 @@ public class VentanaJuego extends JFrame {
         lblTiempo[2].setIcon(imgDigitos[unidades]);
     }
 
-    private void actualizarCarita() {  
+    private void actualizarCarita() { // en este metodo voy a añadir las imagenes del boton reset
         EstadoEnum estado = juego.getEstadoJuego();
         if (estado == EstadoEnum.GANADO) {
             btnReset.setIcon(imgCaritaGana);
