@@ -13,7 +13,7 @@ public class Juego {
 	private Timer timer;
 	private VentanaJuego ventana;
 	private int bombaExplotadaX = -1;
-    private int bombaExplotadaY = -1; 
+	private int bombaExplotadaY = -1;
 
 	public Juego() {
 		this.estadoJuego = EstadoEnum.NO_INICIADO;
@@ -34,11 +34,11 @@ public class Juego {
 		tablero.calcularNumeros();
 		estadoJuego = EstadoEnum.EN_CURSO;
 		bombaExplotadaX = -1;
-        bombaExplotadaY = -1;
+		bombaExplotadaY = -1;
 		iniciarTemporizador();
 	}
 
-	private void iniciarTemporizador() {  // Si no se entiende esta parte escribanme y se los explico 
+	private void iniciarTemporizador() { // Si no se entiende esta parte escribanme y se los explico
 		tiempo = 0;
 		timer = new Timer();
 		timer.scheduleAtFixedRate(new TimerTask() {
@@ -65,7 +65,7 @@ public class Juego {
 			if (!resultado) {
 				estadoJuego = EstadoEnum.PERDIDO;
 				bombaExplotadaX = x;
-                bombaExplotadaY = y; 
+				bombaExplotadaY = y;
 				detenerTemporizador();
 				actualizarVentanaJuego();
 			} else {
@@ -85,32 +85,38 @@ public class Juego {
 		timer = new Timer();
 	}
 
+	// modifique el codigo para que una vez todas las bombas esten marcadas se gane
+	// no como antes
 	private boolean verificarVictoria() {
-		int totalFilas = tablero.getFilas();
-		int totalColumnas = tablero.getColumnas();
-		int casillasSinBomba = (totalFilas * totalColumnas) - dificultad.getCantidadMinas();
-		int casillasReveladas = 0;
+		Casilla[][] casillas = tablero.getCasillas();
+		for (int fila = 0; fila < tablero.getFilas(); fila++) {
+			for (int columna = 0; columna < tablero.getColumnas(); columna++) {
+				Casilla casilla = casillas[fila][columna];
+				if (casilla instanceof CasillaBomba) {
 
-		for (int i = 0; i < totalFilas; i++) {
-			for (int j = 0; j < totalColumnas; j++) {
-				Casilla casilla = tablero.getCasilla(i, j);
-				if (casilla.revelada && !(casilla instanceof CasillaBomba)) {
-					casillasReveladas++;
+					if (!casilla.marcada) {
+						return false;
+					}
+				} else {
+
+					if (!casilla.revelada) {
+						return false;
+					}
 				}
 			}
 		}
-		return casillasReveladas == casillasSinBomba;
+		return true;
 	}
 
 	private void actualizarVentanaJuego() { // permite actualizar la ventana evitando el error del timer :)
-	    if (ventana != null) {
-	        SwingUtilities.invokeLater(new Runnable() { // Si no se entiende esta parte escribanme y se los explico 
-	            @Override
-	            public void run() {
-	                ventana.actualizarInterfaz();
-	            }
-	        });
-	    }
+		if (ventana != null) {
+			SwingUtilities.invokeLater(new Runnable() { // Si no se entiende esta parte escribanme y se los explico
+				@Override
+				public void run() {
+					ventana.actualizarInterfaz();
+				}
+			});
+		}
 	}
 
 	public void reiniciarJuego() {
@@ -151,6 +157,10 @@ public class Juego {
 		this.bombaExplotadaX = bombaExplotadaX;
 	}
 
+	public boolean getCasillaClicada(int fila, int columna) {
+		return estadoJuego == EstadoEnum.PERDIDO && fila == bombaExplotadaX && columna == bombaExplotadaY;
+	}
+
 	public int getBombaExplotadaY() {
 		return bombaExplotadaY;
 	}
@@ -158,6 +168,5 @@ public class Juego {
 	public void setBombaExplotadaY(int bombaExplotadaY) {
 		this.bombaExplotadaY = bombaExplotadaY;
 	}
-	
-	
+
 }

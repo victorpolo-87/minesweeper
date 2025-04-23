@@ -111,7 +111,7 @@ public class VentanaRanking extends JFrame {
 		gbc_btnVolver.gridy = 5;
 		contentPane_1.add(btnVolver, gbc_btnVolver);
 
-        setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 	}
 
 }

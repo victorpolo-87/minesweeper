@@ -23,6 +23,7 @@ import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.GridLayout;
 
 public class VentanaMenuPrincipal extends JFrame {
 
@@ -34,7 +35,7 @@ public class VentanaMenuPrincipal extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\ikasle.ARANGOYA.000\\Desktop\\logo.png.png"));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 435, 455);
+		setBounds(100, 100, 317, 373);
 
 		// JPanel y fondo
 		contentPane = new JPanel() {
@@ -54,69 +55,102 @@ public class VentanaMenuPrincipal extends JFrame {
 		// Configuración del GridBagLayout
 		GridBagLayout gbl_contentPane = new GridBagLayout();
 		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_contentPane.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
-		gbl_contentPane.rowWeights = new double[] { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0,
-				0.0, Double.MIN_VALUE };
+		gbl_contentPane.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
 
 		// Componentes
 		/* Botón Info */
-		JButton btnInfo = new JButton("!");
-		GridBagConstraints gbc_btnInfo = new GridBagConstraints();
-		gbc_btnInfo.insets = new Insets(0, 0, 5, 0);
-		gbc_btnInfo.gridx = 7;
-		gbc_btnInfo.gridy = 1;
-		contentPane.add(btnInfo, gbc_btnInfo);
+		
+				JButton btnInfo = new JButton("!");
+				GridBagConstraints gbc_btnInfo = new GridBagConstraints();
+				gbc_btnInfo.insets = new Insets(0, 0, 5, 0);
+				gbc_btnInfo.gridx = 7;
+				gbc_btnInfo.gridy = 0;
+				contentPane.add(btnInfo, gbc_btnInfo);
+		JPanel panel = new JPanel();
+		panel.setOpaque(false); // Hacer el panel transparente
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.gridwidth = 4;
+		gbc_panel.gridheight = 6;
+		gbc_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 3;
+		gbc_panel.gridy = 1;
+		contentPane.add(panel, gbc_panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[] { 0, 0, 0, 0 };
+		gbl_panel.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_panel.columnWeights = new double[] { 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_panel.rowWeights = new double[] { 1.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, Double.MIN_VALUE };
+		panel.setLayout(gbl_panel);
 
 		JLabel lblNewLabel = new JLabel("BUSCAMINAS");
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.gridwidth = 2;
 		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel.gridx = 3;
-		gbc_lblNewLabel.gridy = 2;
-		contentPane.add(lblNewLabel, gbc_lblNewLabel);
+		gbc_lblNewLabel.gridx = 1;
+		gbc_lblNewLabel.gridy = 0;
+		panel.add(lblNewLabel, gbc_lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Introduce tu nombre:");
 		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
-		gbc_lblNewLabel_1.gridwidth = 2;
 		gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_1.gridx = 3;
-		gbc_lblNewLabel_1.gridy = 4;
-		contentPane.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		gbc_lblNewLabel_1.gridx = 1;
+		gbc_lblNewLabel_1.gridy = 1;
+		panel.add(lblNewLabel_1, gbc_lblNewLabel_1);
 
 		textNombre = new JTextField();
 		GridBagConstraints gbc_textNombre = new GridBagConstraints();
-		gbc_textNombre.gridwidth = 2;
 		gbc_textNombre.insets = new Insets(0, 0, 5, 5);
-		gbc_textNombre.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textNombre.gridx = 3;
-		gbc_textNombre.gridy = 5;
-		contentPane.add(textNombre, gbc_textNombre);
+		gbc_textNombre.gridx = 1;
+		gbc_textNombre.gridy = 2;
+		panel.add(textNombre, gbc_textNombre);
 		textNombre.setColumns(10);
 
 		JLabel lblNewLabel_2 = new JLabel("Dificultad:");
 		GridBagConstraints gbc_lblNewLabel_2 = new GridBagConstraints();
-		gbc_lblNewLabel_2.gridwidth = 2;
 		gbc_lblNewLabel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNewLabel_2.gridx = 3;
-		gbc_lblNewLabel_2.gridy = 7;
-		contentPane.add(lblNewLabel_2, gbc_lblNewLabel_2);
+		gbc_lblNewLabel_2.gridx = 1;
+		gbc_lblNewLabel_2.gridy = 3;
+		panel.add(lblNewLabel_2, gbc_lblNewLabel_2);
 
 		Choice choiceDificultad = new Choice();
 		GridBagConstraints gbc_choiceDificultad = new GridBagConstraints();
-		gbc_choiceDificultad.gridwidth = 2;
 		gbc_choiceDificultad.insets = new Insets(0, 0, 5, 5);
-		gbc_choiceDificultad.gridx = 3;
-		gbc_choiceDificultad.gridy = 8;
-		contentPane.add(choiceDificultad, gbc_choiceDificultad);
-		// Opciones del Choice
-		choiceDificultad.add("");
-		choiceDificultad.add("Facil");
-		choiceDificultad.add("Normal");
-		choiceDificultad.add("Dificil");
+		gbc_choiceDificultad.gridx = 1;
+		gbc_choiceDificultad.gridy = 4;
+		panel.add(choiceDificultad, gbc_choiceDificultad);
+
+		JPanel panel_1 = new JPanel();
+		panel_1.setOpaque(false); // Hacer el panel_1 transparente
+		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+		gbc_panel_1.gridheight = 2;
+		gbc_panel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_panel_1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_panel_1.gridx = 1;
+		gbc_panel_1.gridy = 5;
+		panel.add(panel_1, gbc_panel_1);
+		GridBagLayout gbl_panel_1 = new GridBagLayout();
+		gbl_panel_1.columnWidths = new int[] { 0, 0, 0 };
+		gbl_panel_1.rowHeights = new int[] { 0, 0 };
+		gbl_panel_1.columnWeights = new double[] { 0.0, 0.0, Double.MIN_VALUE };
+		gbl_panel_1.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
+		panel_1.setLayout(gbl_panel_1);
 
 		JButton btnJugar = new JButton("Jugar");
+		GridBagConstraints gbc_btnJugar = new GridBagConstraints();
+		gbc_btnJugar.insets = new Insets(0, 0, 0, 5);
+		gbc_btnJugar.gridx = 0;
+		gbc_btnJugar.gridy = 0;
+		panel_1.add(btnJugar, gbc_btnJugar);
+
+		JButton btnSalir = new JButton("Salir");
+		GridBagConstraints gbc_btnSalir = new GridBagConstraints();
+		gbc_btnSalir.gridx = 1;
+		gbc_btnSalir.gridy = 0;
+		panel_1.add(btnSalir, gbc_btnSalir);
+
 		btnJugar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -137,21 +171,14 @@ public class VentanaMenuPrincipal extends JFrame {
 							"Advertencia", JOptionPane.WARNING_MESSAGE);
 				}
 			}
-
 		});
+
+		// Opciones del Choice
+		choiceDificultad.add("");
+		choiceDificultad.add("Facil");
+		choiceDificultad.add("Normal");
+		choiceDificultad.add("Dificil");
+
 		setLocationRelativeTo(null);
-		GridBagConstraints gbc_btnJugar = new GridBagConstraints();
-		gbc_btnJugar.insets = new Insets(0, 0, 5, 5);
-		gbc_btnJugar.gridx = 3;
-		gbc_btnJugar.gridy = 9;
-		contentPane.add(btnJugar, gbc_btnJugar);
-
-		JButton btnSalir = new JButton("Salir");
-		GridBagConstraints gbc_btnSalir = new GridBagConstraints();
-		gbc_btnSalir.insets = new Insets(0, 0, 5, 5);
-		gbc_btnSalir.gridx = 4;
-		gbc_btnSalir.gridy = 9;
-		contentPane.add(btnSalir, gbc_btnSalir);
 	}
-
 }
