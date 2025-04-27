@@ -4,25 +4,47 @@ import modelo.Dificultad;
 import modelo.Juego;
 import vista.VentanaJuego;
 import vista.VentanaMenuPrincipal;
+import vista.VentanaRanking;
 
 public class Main {
-	private static Juego juego;
-	private static VentanaMenuPrincipal ventanaMenu;
+	private static VentanaMenuPrincipal ventanaMenuPrincipal;
 	private static VentanaJuego ventanaJuego;
+	private static Juego juego;
+	private static String nombreJugador;
+	private static Dificultad dificultad;
 
 	public static void main(String[] args) {
-		juego = new Juego();
-		ventanaMenu = new VentanaMenuPrincipal();
-		ventanaMenu.setVisible(true);
+		ventanaMenuPrincipal = new VentanaMenuPrincipal();
+		ventanaMenuPrincipal.setVisible(true);
+		
 	}
-
-	public static void getFilasColumnas(Dificultad dificultad) {
-		juego.iniciarJuego(dificultad); // Inicializa el tablero
+	
+	
+	public static void getFilasColumnas(Dificultad d) {
+		int filas = d.getTamanioFilas();
+		int columnas = d.getTamanioColumnas();
+		juego = new Juego();
+		juego.setNombreJugador(nombreJugador);
+		juego.iniciarJuego(dificultad);
+		String dificultadJuego = dificultad.toString();
+		ventanaJuego = new VentanaJuego(filas, columnas, juego, nombreJugador, dificultadJuego); //int x, int y, Juego juego, String nombreJugador, String dificultad
 	}
 
 	public static void cambiarVentanaAJuego() {
-		ventanaMenu.dispose();
-		ventanaJuego = new VentanaJuego(juego.getTablero().getFilas(), juego.getTablero().getColumnas(), juego);
+		ventanaMenuPrincipal.dispose();
 		ventanaJuego.setVisible(true);
+	}
+
+	public static void setNombreJugador(String nombre) {
+		nombreJugador = nombre;
+	}
+
+	public static void setDificultad(Dificultad d) {
+		dificultad = d;
+	}
+	
+	public static void cambiarVentanaRanking() {
+		VentanaRanking ventanaRanking = new VentanaRanking(nombreJugador);
+		ventanaRanking.setVisible(true);
 	}
 }

@@ -54,21 +54,11 @@ public class VentanaMenuPrincipal extends JFrame {
 
 		// Configuración del GridBagLayout
 		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		gbl_contentPane.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 		gbl_contentPane.rowHeights = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-		gbl_contentPane.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE };
+		gbl_contentPane.columnWeights = new double[] { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, Double.MIN_VALUE };
 		gbl_contentPane.rowWeights = new double[] { 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE };
 		contentPane.setLayout(gbl_contentPane);
-
-		// Componentes
-		/* Botón Info */
-		
-				JButton btnInfo = new JButton("!");
-				GridBagConstraints gbc_btnInfo = new GridBagConstraints();
-				gbc_btnInfo.insets = new Insets(0, 0, 5, 0);
-				gbc_btnInfo.gridx = 7;
-				gbc_btnInfo.gridy = 0;
-				contentPane.add(btnInfo, gbc_btnInfo);
 		JPanel panel = new JPanel();
 		panel.setOpaque(false); // Hacer el panel transparente
 		GridBagConstraints gbc_panel = new GridBagConstraints();
@@ -157,9 +147,17 @@ public class VentanaMenuPrincipal extends JFrame {
 				String seleccion = choiceDificultad.getSelectedItem();
 				if (!seleccion.equals("")) {
 					try {
+						String nombre = textNombre.getText().trim();
+						if (nombre.isEmpty()) {
+							JOptionPane.showMessageDialog(VentanaMenuPrincipal.this, "Por favor, introduce tu nombre",
+									"Advertencia", JOptionPane.WARNING_MESSAGE);
+							return;
+						}
 						String seleccionNormalizada = seleccion.toUpperCase();
 						DificultadEnum nivel = DificultadEnum.valueOf(seleccionNormalizada);
 						Dificultad d1 = new Dificultad(nivel);
+						Main.setNombreJugador(nombre);
+						Main.setDificultad(d1);
 						Main.getFilasColumnas(d1);
 						Main.cambiarVentanaAJuego();
 					} catch (IllegalArgumentException ex) {
@@ -175,9 +173,9 @@ public class VentanaMenuPrincipal extends JFrame {
 
 		// Opciones del Choice
 		choiceDificultad.add("");
-		choiceDificultad.add("Facil");
-		choiceDificultad.add("Normal");
-		choiceDificultad.add("Dificil");
+		choiceDificultad.add("FACIL");
+		choiceDificultad.add("NORMAL");
+		choiceDificultad.add("DIFICIL");
 
 		setLocationRelativeTo(null);
 	}
