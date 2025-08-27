@@ -1,4 +1,4 @@
-# 💣 Minesweeper - Group 5 💣  
+# 💣 Minesweeper 💣  
 
 🚀 **Proyecto: Creación de un Buscaminas**  
 🔎 Un clásico reinventado con nuestro toque especial.  
@@ -44,22 +44,7 @@ El juego de **Buscaminas** se desarrollará en **Java**, con **Swing** para la i
   - 🎉 Victoria: Descubrir todas las celdas sin mina.  
   - 💥 Derrota: Hacer clic en una celda con mina.  
 
-### 🛠️ Control de versiones con GitHub  
-- 📌 Repositorio en **GitHub**.  
-- 📤 Código subido y actualizado constantemente.  
-- 🔄 Commits frecuentes con mensajes descriptivos.  
-- 🌱 Uso de **branches** para nuevas funcionalidades antes de fusionarlas con la rama principal.  
 
-✅ **Entregables:**  
-📂 Código fuente en un **repositorio público** o compartido con el profesor.  
-📄 **README.md** con:  
-  - Instrucciones de instalación y ejecución.  
-  - Explicación de la estructura del código.  
-  - Integrantes del grupo.  
 
-📑 **Informe en PDF** con:  
-- Diseño de la interfaz y lógica implementada.  
-- Uso de **GitHub** en el desarrollo.  
-- 📸 Capturas de pantalla del juego funcionando.  
 
-💻 **¡Pronto más detalles y avances del desarrollo!**  
+
